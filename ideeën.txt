@@ -1,0 +1,25 @@
+- hints via letmegooglethat for you met verkorte url
+- cryptex (cijfercode op meerdere plekken); - coderen met rekenlineaal? Volgorde voor cryptex via kleuren volgens kaft DES Leemis and Park
+- afbeelding gecodeerd met FACADE (hints met hexadecimaal (grieks); zoekt en gij zult vinden; iets met verwijderen; iets met afstand nemen)
+- apparaten/boeken verspreid in kamer
+- matrix screensaver
+- RSA encryptie in R?
+- Caesar/vigeniere code; hint via afbeeldingen; achtereenvolgens
+
+Bij binnenkomst staat op tafel twee fotolijstjes (één me caesar/et tu brute etc. en één met vigeniere.) Bij de eerste staat een 1 en bij de tweede een twee.
+Bij foto 1 staat een gekleurd getal op de achterkant getekend. Op tafel liggen boeken en wat apparatuur enzo.
+Onder de tafel staat een briefje met een een tekst gecodeerd volgens een caesar code (lang genoeg om met gokken op te kunnen lossen): "Hoewel deze code, vernoemd naar een oud heerser, makkelijk te kraken is met kennis van de taal, zal de volgende code lastiger zijn. Deze franse methode vergt meer dan alleen een brute aanpak, maar om het te kraken heb je een sleutel nodig" (oplossen met draaischijf)
+Hieronder staat een tabel met de letters A-Z en vakjes eronder om aan te geven dat de letters vertaald moeten worden.
+
+De key van de vigeniere code is "" en is te vinden op...
+
+Na onsleuteling van de vigeniere code komt het bericht: "Na lang gezworven te hebben in alle uithoeken, vond onze held eindelijk welverdiende rust en snelle binding met zijn lotgenoten. Eindelijk werd hem duidelijk wat hij met zijn geheim moest doen. [5]"
+
+in de poef bevind zich de cryptex (nog nutteloos) en de methode om de getallen in te voeren in de cryptex. Hiervoor zal een rekenlineaal gebruikt worden. Bv a->b2 B2->B3 etc . De getallen moeten hierin ingevuld worden volgens de kleuren van de DES boek.
+
+één cijfer is verstopt in een toetsenbord o.i.d.
+een volgende hint: "Voor het meest gebruikte encrypte algoritme, RSA, zijn de bouwstenen van de getallen nodig: de priemgetallen"
+"Je moet je kop gebruiken om ..." (verstopt in de hersenen)
+
+Met de cijfers in de juiste volgorde kant de USB stick geopend worden. Daarop staat een text afbeelding met 0en 1en die ontcijferd kan worden door het woord facade om te zetten naar binair vanaf hexadecimaal. Dit levert een afbeelding op. Hints met FACADE en wat je moet doen (hexadecimaal enzo) zijn nog nodig. Ook staat er een programma op die via internet berichten kan ontcijferen. Deze berichten worden gestuurd via een raspberry pi die in elkaar gezet is en met een wachtwoord onlocked is. Op de raspberry pi staat een instructietekst en garbeled text die ontcijferd moet worden met een wachtwoord; zodra dit goed is komt er een hint te staan om een bericht naar de PC te sturen,
+De PC ontvangt alle berichten en doet decryptie volgens RSA oid. Bij het juiste antwoord laat hij het woord FACADE zien met een uitleg erbij.
