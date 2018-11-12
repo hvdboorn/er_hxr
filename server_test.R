@@ -72,6 +72,7 @@ translate = function() {
   input = toupper(readline("Enter phrase: "))
   if (grepl("^[0-9A-F]+$", input)) {
     output = paste0(hex2bin(input), collapse = "")
+    output = paste0(strsplit(output,"(?<=\\G.{4})", perl = TRUE)[[1]], collapse = " ")
     cat("Output:", green(output))
   } else {
     cat(red("ERROR: input must be hexadecimal."))
