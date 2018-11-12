@@ -25,7 +25,9 @@ client <- function(){
     close(con)
   }
 }
-#server()
+
+settings <<- c(bits="128", TZ="GMT+1", colorcoding="FALSE", encryption="TRUE")
+
 text = "The hexadecimal numeral system, also known as just hex, is a numeral system made up of 16 symbols (base 16). 
 The standard numeral system is called decimal (base 10) and uses ten symbols: 0,1,2,3,4,5,6,7,8,9. Hexadecimal uses the decimal numbers and includes six extra symbols. 
 There are no symbols that mean ten, or eleven etc. so these symbols are letters taken " %+% red("f") %+% "rom the English alphabet: A, B, C, D, E and F. 
@@ -47,11 +49,11 @@ Software developers quite often use 0x before the number (0x63)."
 #cat(text)
 #cat(strip_style(text))
 
+clc = function() {cat("\014");  system("clear")}
 
-update_settings = function(settings = c(bits="128", TZ="GMT+1", colorcoding="FALSE", encryption="TRUE")) {
+update_settings = function(settings) {
   while (TRUE) {
-    cat("\014")
-    system("clear")
+    clc()
     cat(cyan("Current settings: "),"\n")
     cat(paste0(names(settings), ": ", green(settings),collapse = "\n"), "\n\n\n")
     val = menu(names(settings), title = "Change value (0 to exit)")
@@ -64,4 +66,26 @@ update_settings = function(settings = c(bits="128", TZ="GMT+1", colorcoding="FAL
   }
   settings
 }
-settings = update_settings()
+display_enc = function(settings) {
+  clc()
+  if("colorcoding" %in% names(settings) && settings["colorcoding"] == "TRUE") {
+    cat(text)
+  } else {
+    cat(strip_style(text))
+  }
+  cat("\n\n")
+  readline("Press enter to continue...")
+}
+main_menu = function() {
+  while (TRUE) {
+    clc()
+    options = c("Encyclopaedia", "Settings")
+    val = menu(options, title="Choose option")
+    if(val == 1) {
+      display_enc(settings)
+    } else if (val == 2) {
+      settings <<- update_settings(settings)
+    }
+  }
+}
+main_menu()
