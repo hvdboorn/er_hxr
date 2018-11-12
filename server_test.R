@@ -1,6 +1,6 @@
 library(hgutils)
 startup()
-load_packages("crayon")
+library("crayon")
 
 server <- function(){
   while(TRUE){
@@ -50,6 +50,7 @@ Software developers quite often use 0x before the number (0x63)."
 
 update_settings = function(settings = c(bits="128", TZ="GMT+1", colorcoding="FALSE", encryption="TRUE")) {
   while (TRUE) {
+    cat("\014")
     cat(cyan("Current settings: "),"\n")
     cat(paste0(names(settings), ": ", green(settings),collapse = "\n"), "\n\n\n")
     val = menu(names(settings), title = "Change value (0 to exit)")
