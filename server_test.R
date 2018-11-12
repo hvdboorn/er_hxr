@@ -2,6 +2,7 @@ library(hgutils)
 startup()
 library(crayon)
 library(BMS)
+library(stringr)
 
 server <- function(){
   while(TRUE){
@@ -70,7 +71,7 @@ update_settings = function(settings) {
 translate = function() {
   clc()
   input = toupper(readline("Enter phrase: "))
-  if (grepl("^[0-9A-F]+$", input)) {
+  if (str_detect(input, "^[0-9A-F]+$")) {
     output = paste0(hex2bin(input), collapse = "")
     output = paste0(strsplit(output,"(?<=\\G.{4})", perl = TRUE)[[1]], collapse = " ")
     cat("Output:", green(output))
