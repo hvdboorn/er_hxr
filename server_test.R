@@ -1,6 +1,7 @@
 library(hgutils)
 startup()
-library("crayon")
+library(crayon)
+library(BMS)
 
 server <- function(){
   while(TRUE){
@@ -66,6 +67,19 @@ update_settings = function(settings) {
   }
   settings
 }
+translate = function() {
+  clc()
+  input = toupper(readline("Enter phrase: "))
+  if (grepl("^[0-9A-F]+$", input)) {
+    output = paste0(hex2bin(input), collapse = "")
+    cat("Output:", green(output))
+  } else {
+    cat(red("ERROR: input must be hexadecimal."))
+  }
+  
+  cat("\n\n")
+  readline("Press enter to continue...")
+}
 display_enc = function(settings) {
   clc()
   if("colorcoding" %in% names(settings) && settings["colorcoding"] == "TRUE") {
@@ -79,11 +93,13 @@ display_enc = function(settings) {
 main_menu = function() {
   while (TRUE) {
     clc()
-    options = c("Encyclopaedia", "Settings")
+    options = c("Encyclopaedia", "Translate", "Settings")
     val = menu(options, title="Choose option")
     if(val == 1) {
       display_enc(settings)
     } else if (val == 2) {
+      translate()
+    } else if (val == 3) {
       settings <<- update_settings(settings)
     }
   }
