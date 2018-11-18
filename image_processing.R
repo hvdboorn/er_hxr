@@ -37,9 +37,12 @@ display_text = function(text, linewidth, pswd =  "X") {
   cat(paste0(txt, collapse = "\n"))
 }
 
-text = generate_text(key, linewidth)
+#text = generate_text(key, linewidth)# %>% str_replace_all("1", green("1"))
+#saveRDS(text, "message.RDS")
+
+text = readRDS("message.RDS")
 display_text(text, linewidth, key)
-writeLines(text, "image_output.txt")
+#writeLines(text, "image_output.txt")
 #regex = key %>% str_replace_all("1","[5-9]") %>% str_replace_all("0","[0-4]")
 #remove all regex occurences of: 11111.1.11..1.1.11.1111.
 #set all [0,2-9] occurrences to " "
