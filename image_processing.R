@@ -1,6 +1,10 @@
 library(hgutils)
 startup()
-load_packages("imager","BMS","stringr", "crayon")
+library("imager")
+library("BMS")
+library("stringr")
+library("crayon")
+
 linewidth = 180
 key = "FACADE" %>% hex2bin %>% paste0(collapse = "")
 
