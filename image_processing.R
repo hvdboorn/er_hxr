@@ -4,13 +4,13 @@ library("BMS")
 library("stringr")
 library("crayon")
 
-linewidth = 180
+linewidth = 228 #height=55
 key = "FACADE" %>% hex2bin %>% paste0(collapse = "")
 
 generate_text = function(key, linewidth) {
   ok = FALSE
   while(!ok) {
-    img = load.image("bw_test2.png")
+    img = load.image("mssg.png")
     width = width(img); height=height(img)
     img %<>% resize(size_x=linewidth, size_y=round(linewidth/width*height), size_c = 1) %>% {.>0.5} %>% as.matrix
     img = apply(t(img), c(1,2), function(x) ifelse(x,ifelse(runif(1)>0.9,"1","0"),"1"))
@@ -37,7 +37,7 @@ display_text = function(text, linewidth, pswd =  "X") {
 }
 
 #library("imager")
-#text = generate_text(key, linewidth)# %>% str_replace_all("1", green("1"))
+#text = generate_text(key, linewidth)
 #saveRDS(text, "message.RDS")
 
 text = readRDS("message.RDS")
