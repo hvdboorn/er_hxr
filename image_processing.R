@@ -42,20 +42,20 @@ display_text = function(text, linewidth, pswd =  "X") {
 
 client <- function(){
   text = readRDS("message.RDS")
-  quit=FALSE
-  while(!quit){
+  while(TRUE){
     readline("Connecting to server: first run the server and then press enter to continue...")
     con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
                             server=FALSE, open="r+", timeout=15)
     writeLines("REQUEST_CONNECT", con)
     data = readLines(con, 1)
     if(data=="CONNECT_SUCCESS") {
-      while(!quit) {
+      while(TRUE) {
         cat("Waiting for password...\n")
         pswd = readLines(con, 1)
         if (length(pswd)>0) {
           if(pswd=="QUIT") {
-            quit=TRUE
+            close(con)
+            return()
           } else {
             display_text(text, linewidth, pswd)
             cat("\n")

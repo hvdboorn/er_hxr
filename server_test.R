@@ -20,10 +20,11 @@ server <- function(){
         if(pswd=="")
           pswd="X"
         
+        writeLines(trimws(pswd), con)
+        
         if(trimws(pswd) == "QUIT")
           break;
         
-        writeLines(trimws(pswd), con)
         cat(green("Encrypted message sent.\n"))
       }
     }
