@@ -4,29 +4,35 @@ library(crayon)
 library(BMS)
 library(stringr)
 
+#draait op PC
 server <- function(){
   while(TRUE){
-    writeLines("Listening...")
-    con <- socketConnection(host="192.168.2.1", port = 7337, blocking=TRUE,
-                            server=TRUE, open="r+")
+    cat("Waiting for client to connect...\n")
+    con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
+                            server=TRUE, open="r+", timeout = 3600)
     data <- readLines(con, 1)
-    print(data)
+    if(data=="REQUEST_CONNECT") {
+      cat(green("Client connected"), "\n")
+      writeLines("CONNECT_SUCCESS", con)
+      
+      while(TRUE) {
+        pswd = readline("Enter password (QUIT to close connection): ")
+        if(pswd=="")
+          pswd="X"
+        
+        if(trimws(pswd) == "QUIT")
+          break;
+        
+        writeLines(trimws(pswd), con)
+        cat(green("Encrypted message sent.\n"))
+      }
+    }
     close(con)
   }
 }
 
-client <- function(){
-  while(TRUE){
-    con <- socketConnection(host="192.168.2.1", port = 7337, blocking=TRUE,
-                            server=FALSE, open="r+")
-    sendme <- readline("Enter text to be upper-cased, q to quit: ")
-    if(tolower(sendme)=="q"){
-      break
-    }
-    write_resp <- writeLines(sendme, con)
-    close(con)
-  }
-}
+#draait op RPI
+
 
 settings <<- c(bits="128", TZ="GMT+1", colorcoding="FALSE", encryption="TRUE")
 

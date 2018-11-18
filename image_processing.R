@@ -40,8 +40,32 @@ display_text = function(text, linewidth, pswd =  "X") {
 #text = generate_text(key, linewidth)
 #saveRDS(text, "message.RDS")
 
-text = readRDS("message.RDS")
-display_text(text, linewidth, key)
+client <- function(){
+  text = readRDS("message.RDS")
+  while(TRUE){
+    readline("Connecting to server: first run the server and then press enter to continue...")
+    con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
+                            server=FALSE, open="r+", timeout=15)
+    writeLines("REQUEST_CONNECT", con)
+    data = readLines(con, 1)
+    if(data=="CONNECT_SUCCESS") {
+      while(TRUE) {
+        cat("Waiting for password...\n")
+        pswd = readLines(con, 1)
+        if (length(pswd)>0) {
+          if(pswd=="QUIT") {
+            close(con)
+            return()
+          } else {
+            display_text(text, linewidth, pswd)
+            cat("\n")
+          }
+        }
+      }
+    }
+    close(con)
+  }
+}
 #writeLines(text, "image_output.txt")
 #regex = key %>% str_replace_all("1","[5-9]") %>% str_replace_all("0","[0-4]")
 #remove all regex occurences of: 11111.1.11..1.1.11.1111.
