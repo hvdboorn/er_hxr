@@ -23,3 +23,11 @@ een volgende hint: "Voor het meest gebruikte encrypte algoritme, RSA, zijn de bo
 
 Met de cijfers in de juiste volgorde kant de USB stick geopend worden. Daarop staat een text afbeelding met 0en 1en die ontcijferd kan worden door het woord facade om te zetten naar binair vanaf hexadecimaal. Dit levert een afbeelding op. Hints met FACADE en wat je moet doen (hexadecimaal enzo) zijn nog nodig. Ook staat er een programma op die via internet berichten kan ontcijferen. Deze berichten worden gestuurd via een raspberry pi die in elkaar gezet is en met een wachtwoord onlocked is. Op de raspberry pi staat een instructietekst en garbeled text die ontcijferd moet worden met een wachtwoord; zodra dit goed is komt er een hint te staan om een bericht naar de PC te sturen,
 De PC ontvangt alle berichten en doet decryptie volgens RSA oid. Bij het juiste antwoord laat hij het woord FACADE zien met een uitleg erbij.
+
+Rekenlineaal instructies:
+Instellen   Aflezen bij
+b2B2        b4.5-B^2>		9
+a8B^{2}4    B^2{7}->a 		6
+b{\pi}B1	a2->b			5
+B^{2}9B3	b10 ->B			6
+B^{2}9B3	b1.65 ->B		1
