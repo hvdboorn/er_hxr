@@ -1,6 +1,5 @@
 library(hgutils)
 startup()
-library("imager")
 library("BMS")
 library("stringr")
 library("crayon")
@@ -37,6 +36,7 @@ display_text = function(text, linewidth, pswd =  "X") {
   cat(paste0(txt, collapse = "\n"))
 }
 
+#library("imager")
 #text = generate_text(key, linewidth)# %>% str_replace_all("1", green("1"))
 #saveRDS(text, "message.RDS")
 
