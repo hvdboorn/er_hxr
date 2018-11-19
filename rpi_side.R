@@ -67,7 +67,7 @@ update_settings = function(settings) {
 }
 client <- function(){
   clc()
-  text = readRDS("message.RDS")
+  message = readRDS("message.RDS")
   while(TRUE){
     cat("Connecting to server @ " %+% cyan("192.168.2.3:7337" %+% black(".\n")))
     readline("First start the server and then press enter to continue...")
@@ -76,7 +76,7 @@ client <- function(){
     writeLines("REQUEST_CONNECT", con)
     data = readLines(con, 1)
     if(data=="CONNECT_SUCCESS") {
-      display_text(text, linewidth, "X")
+      display_text(message, linewidth, "X")
       cat("\n")
       once = FALSE
       while(TRUE) {
@@ -89,7 +89,7 @@ client <- function(){
             close(con)
             return()
           } else {
-            display_text(text, linewidth, pswd)
+            display_text(message, linewidth, pswd)
             cat("\n")
           }
         }
