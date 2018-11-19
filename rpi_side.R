@@ -39,14 +39,9 @@ display_enc = function(settings) {
 translate = function() {
   clc()
   input = toupper(readline("Enter phrase: "))
-  if (str_detect(input, "^[0-9A-F]+$")) {
-    output = paste0(hex2bin(input), collapse = "")
-    output = paste0(strsplit(output,"(?<=\\G.{4})", perl = TRUE)[[1]], collapse = " ")
-    cat("Output:", green(output))
-  } else {
-    cat(red("ERROR: input must be hexadecimal."))
-  }
-  
+  output = str_split(input,"")[[1]] %>% sapply(., function(x) ifelse(str_detect(x, "[0-9A-F]"), paste0(hex2bin(x), collapse = ""), x)) %>% paste0(collapse = "")
+  output = paste0(strsplit(output,"(?<=\\G.{4})", perl = TRUE)[[1]], collapse = " ")
+  cat("Output:", green(output))
   cat("\n\n")
   readline("Press enter to continue...")
 }
