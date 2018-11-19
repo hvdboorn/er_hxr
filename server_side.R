@@ -18,7 +18,6 @@ server <- function(){
         if(pswd=="")
           pswd="X"
         pswd = trimws(pswd %>% str_replace_all(" ", "")) %>% toupper
-        browser()
         writeLines(pswd, con)
         
         if(pswd == "QUIT")
