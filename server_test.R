@@ -32,6 +32,8 @@ server <- function(){
   }
 }
 
+source("image_processing.R")
+
 #draait op RPI
 
 
@@ -110,6 +112,8 @@ main_menu = function() {
       translate()
     } else if (val == 3) {
       settings <<- update_settings(settings)
+    } else if (val == 4) {
+      client()
     }
   }
 }

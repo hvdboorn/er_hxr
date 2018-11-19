@@ -49,6 +49,7 @@ client <- function(){
     writeLines("REQUEST_CONNECT", con)
     data = readLines(con, 1)
     if(data=="CONNECT_SUCCESS") {
+      display_text(text, linewidth, "X")
       while(TRUE) {
         cat("Waiting for password...\n")
         pswd = readLines(con, 1)
