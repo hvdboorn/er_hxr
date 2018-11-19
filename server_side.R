@@ -17,10 +17,10 @@ server <- function(){
         pswd = readline("Enter password (QUIT to close connection): ")
         if(pswd=="")
           pswd="X"
+        pswd = trimws(pswd %>% str_replace_all(" ", "")) %>% toupper
+        writeLines(pswd, con)
         
-        writeLines(trimws(pswd), con)
-        
-        if(trimws(pswd) == "QUIT")
+        if(pswd == "QUIT")
           break;
         
         cat(green("Encrypted message sent.\n"))

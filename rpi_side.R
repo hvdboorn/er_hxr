@@ -69,7 +69,7 @@ client <- function(){
   clc()
   text = readRDS("message.RDS")
   while(TRUE){
-    cat("Connecting to server @" %+% cyan("192.168.2.3:7337" %+% black(".\n")))
+    cat("Connecting to server @ " %+% cyan("192.168.2.3:7337" %+% black(".\n")))
     readline("First start the server and then press enter to continue...")
     con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
                             server=FALSE, open="r+", timeout=15)
@@ -78,8 +78,11 @@ client <- function(){
     if(data=="CONNECT_SUCCESS") {
       display_text(text, linewidth, "X")
       cat("\n")
+      once = FALSE
       while(TRUE) {
-        cat("Waiting for password...\n")
+        if(!once)
+          cat("Waiting for password...\n")
+        once=TRUE
         pswd = readLines(con, 1)
         if (length(pswd)>0) {
           if(pswd=="QUIT") {
