@@ -69,7 +69,8 @@ client <- function(){
   clc()
   text = readRDS("message.RDS")
   while(TRUE){
-    readline("Connecting to server @ 192.168.2.3:7337. First start the server and then press enter to continue...")
+    cat("Connecting to server @" %+% cyan("192.168.2.3:7337" %+% black(".\n")))
+    readline("First start the server and then press enter to continue...")
     con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
                             server=FALSE, open="r+", timeout=15)
     writeLines("REQUEST_CONNECT", con)
