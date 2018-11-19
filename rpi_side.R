@@ -1,44 +1,11 @@
 library(hgutils)
 startup()
-library(crayon)
-library(BMS)
-library(stringr)
-
-#draait op PC
-server <- function(){
-  while(TRUE){
-    cat("Waiting for client to connect...\n")
-    con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
-                            server=TRUE, open="r+", timeout = 3600)
-    data <- readLines(con, 1)
-    if(data=="REQUEST_CONNECT") {
-      cat(green("Client connected"), "\n")
-      writeLines("CONNECT_SUCCESS", con)
-      
-      while(TRUE) {
-        pswd = readline("Enter password (QUIT to close connection): ")
-        if(pswd=="")
-          pswd="X"
-        
-        writeLines(trimws(pswd), con)
-        
-        if(trimws(pswd) == "QUIT")
-          break;
-        
-        cat(green("Encrypted message sent.\n"))
-      }
-    }
-    close(con)
-  }
-}
-
-source("image_processing.R")
-
-#draait op RPI
-
+library("BMS")
+library("stringr")
+library("crayon")
+source("image_util.R")
 
 settings <<- c(bits="128", TZ="GMT+1", colorcoding="FALSE", encryption="TRUE")
-
 text = "The hexadecimal numeral system, also known as just hex, is a numeral system made up of 16 symbols (base 16). 
 The standard numeral system is called decimal (base 10) and uses ten symbols: 0,1,2,3,4,5,6,7,8,9. Hexadecimal uses the decimal numbers and includes six extra symbols. 
 There are no symbols that mean ten, or eleven etc. so these symbols are letters taken " %+% red("f") %+% "rom the English alphabet: A, B, C, D, E and F. 
@@ -57,25 +24,17 @@ Hexadecimal makes it easier to write these large binary numbers. To avoid confus
 hexadecimal numbers are sometim"%+% red("e") %+% "s written with a \"h\" after the number. For example, 63h means 63 hexadecimal. 
 Software developers quite often use 0x before the number (0x63)."
 
-#cat(text)
-#cat(strip_style(text))
-
 clc = function() {cat("\014");  system("clear")}
 
-update_settings = function(settings) {
-  while (TRUE) {
-    clc()
-    cat(cyan("Current settings: "),"\n")
-    cat(paste0(names(settings), ": ", green(settings),collapse = "\n"), "\n\n\n")
-    val = menu(names(settings), title = "Change value (0 to exit)")
-    if(val != 0) {
-      new_val = readline(paste0("New value for [", names(settings)[val],"]: "))
-      settings[val] = new_val
-    } else {
-      break
-    }
+display_enc = function(settings) {
+  clc()
+  if("colorcoding" %in% names(settings) && settings["colorcoding"] == "TRUE") {
+    cat(text)
+  } else {
+    cat(strip_style(text))
   }
-  settings
+  cat("\n\n")
+  readline("Press enter to continue...")
 }
 translate = function() {
   clc()
@@ -91,20 +50,55 @@ translate = function() {
   cat("\n\n")
   readline("Press enter to continue...")
 }
-display_enc = function(settings) {
-  clc()
-  if("colorcoding" %in% names(settings) && settings["colorcoding"] == "TRUE") {
-    cat(text)
-  } else {
-    cat(strip_style(text))
+update_settings = function(settings) {
+  while (TRUE) {
+    clc()
+    cat(cyan("Current settings: "),"\n")
+    cat(paste0(names(settings), ": ", green(settings),collapse = "\n"), "\n\n\n")
+    val = menu(names(settings), title = "Change value (0 to exit)")
+    if(val != 0) {
+      new_val = readline(paste0("New value for [", names(settings)[val],"]: "))
+      settings[val] = new_val
+    } else {
+      break
+    }
   }
-  cat("\n\n")
-  readline("Press enter to continue...")
+  settings
 }
+client <- function(){
+  clc()
+  text = readRDS("message.RDS")
+  while(TRUE){
+    readline("Connecting to server @ 192.168.2.3:7337. First start the server and then press enter to continue...")
+    con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
+                            server=FALSE, open="r+", timeout=15)
+    writeLines("REQUEST_CONNECT", con)
+    data = readLines(con, 1)
+    if(data=="CONNECT_SUCCESS") {
+      display_text(text, linewidth, "X")
+      cat("\n")
+      while(TRUE) {
+        cat("Waiting for password...\n")
+        pswd = readLines(con, 1)
+        if (length(pswd)>0) {
+          if(pswd=="QUIT") {
+            close(con)
+            return()
+          } else {
+            display_text(text, linewidth, pswd)
+            cat("\n")
+          }
+        }
+      }
+    }
+    close(con)
+  }
+}
+
 main_menu = function() {
   while (TRUE) {
     clc()
-    options = c("Encyclopaedia", "Translate", "Settings")
+    options = c("Encyclopaedia", "Translate", "Settings", "Start client")
     val = menu(options, title="Choose option")
     if(val == 1) {
       display_enc(settings)
