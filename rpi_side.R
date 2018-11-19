@@ -80,9 +80,6 @@ client <- function(){
       cat("\n")
       once = FALSE
       while(TRUE) {
-        if(!once)
-          cat("Waiting for password...\n")
-        once=TRUE
         pswd = readLines(con, 1)
         if (length(pswd)>0) {
           if(pswd=="QUIT") {
