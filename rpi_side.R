@@ -28,7 +28,7 @@ clc = function() {cat("\014");  system("clear")}
 
 display_enc = function(settings) {
   clc()
-  if("colorcoding" %in% names(settings) && settings["colorcoding"] == "TRUE") {
+  if("colorcoding" %in% names(settings) && settings["colorcoding"] == "#FF0000") {
     cat(text)
   } else {
     cat(strip_style(text))
