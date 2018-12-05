@@ -1,7 +1,1 @@
-*
-!*.[rR]
-!*.[RDS]
-!*.Rprofile
-!*.Rprofile2
-create_image.R
-server_side.R
+mngr/
