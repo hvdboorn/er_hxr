@@ -1,5 +1,6 @@
 *
 !*.[rR]
 !*.[RDS]
+!*.Rprofile
 create_image.R
 server_side.R
