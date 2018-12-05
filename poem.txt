@@ -1,4 +1,0 @@
-Roses are #FF0000,
-Violets are blue,
-Some people change settings,
-And so should you.
