@@ -41,10 +41,13 @@ Hoewel deze code, vernoemd naar een oud heerser, makkelijk te kraken is met kenn
 Vigenere encryptie via https://www.dcode.fr/vigenere-cipher#1
 Key: SLTL
 
-TWEE KOMMA VIJF IS HET EERSTE RODE GETAL
-LHXP CZFXS GBUX TL SWE XPJDMP JZWP YPMLD
+TWINTIG IS HET TWEEDE RODE GETAL
+LHBYLTZ TK SXE LHXPVP KZVP ZPLLE
 
 Instructies -> CAESAR op tafel -> vriezer (Vigenere/rekenlineaal instructies) -> Sleutel in kamer -> vigenere (eerste getal hint)/tweede hint op achterkant caesar/derde hint in toetsenbord/vierde hint op poster/vijfde hint onderkant tafel ->
 Cryptex in poef -> raspberry pi op onderdelen RPI -> omcirkelde cijfers in boek
 
 Laatste code op blz 346 -> 270
+
+dcode.fr cookies clearen voor gebruikt
+stickers met cijfers printen en RPI symbolen
