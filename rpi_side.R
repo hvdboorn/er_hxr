@@ -67,10 +67,6 @@ client <- function(){
     cat("Connecting to server @ " %+% cyan("192.168.2.3:7337" %+% black(".\n")))
     readline("First start the server and then press enter to continue...")
     
-    try
-    con <- socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
-                            server=FALSE, open="r+", timeout=15)
-    
     con = tryCatch({
       socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
                        server=FALSE, open="r+", timeout=15)
