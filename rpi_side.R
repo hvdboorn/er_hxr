@@ -68,8 +68,8 @@ client <- function(){
     readline("First start the server and then press enter to continue...")
     
     con = tryCatch({
-      stfu(socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
-                       server=FALSE, open="r+", timeout=15))
+      socketConnection(host="192.168.2.3", port = 7337, blocking=TRUE,
+                       server=FALSE, open="r+", timeout=15)
     }, error = function(e) {
       cat("Could not make a connection to the server. Make sure you have an internet connection and that the server is running.\n")
       invisible(readline(prompt="Press [ENTER] to continue"))
